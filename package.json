@@ -1,0 +1,12 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "Compilation of Scalprum examples",
+  "repository": "https://github.com/scalprum/examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Marosi <marvusm.mmi@gmail.com>",
+  "license": "Apache-2.0"
+}
