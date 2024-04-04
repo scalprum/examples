@@ -1,45 +1,46 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { ModuleFederationPlugin } = require('webpack').container;
+
+const { DynamicRemotePlugin } = require('@openshift/dynamic-plugin-sdk-webpack');
+
+const sharedModules = {
+  '@openshift/dynamic-plugin-sdk': { singleton: true },
+  '@scalprum/react-core': { singleton: true },
+  react: { singleton: true },
+  'react-dom': { singleton: true },
+};
+
+const dynamicPlugin = new DynamicRemotePlugin({
+  extensions: [],
+  sharedModules,
+  moduleFederationSettings: {
+    libraryType: 'global',
+  },
+  entryScriptfilename: 'remoteModule.(contenthash].js',
+  pluginMetadata: {
+    name: 'remoteModule',
+    version: '1.0.0',
+    exposedModules: {
+      RemoteModuleComponent: './src/RemoteModuleComponent.tsx',
+    },
+    extensions: [],
+  },
+});
 
 const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 const config = {
-  entry: './src/index.ts',
+  entry: {},
   output: {
     path: path.resolve(__dirname, 'dist'),
-  },
-  devServer: {
-    open: true,
-    host: 'localhost',
+    publicPath: 'http://localhost:8003/',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-    }),
-    new ModuleFederationPlugin({
-      name: 'shell',
-      filename: isProduction ? 'shell-entry.[contenthash].js' : 'shell-entry.js',
-      shared: [
-        {
-          react: {
-            requiredVersion: '*',
-            singleton: true,
-          },
-          'react-dom': {
-            requiredVersion: '*',
-            singleton: true,
-          },
-          '@scalprum/react-core': { singleton: true, requiredVersion: '*' },
-          '@openshift/dynamic-plugin-sdk': { singleton: true, requiredVersion: '*' },
-        },
-      ],
-    }),
+    dynamicPlugin,
 
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
