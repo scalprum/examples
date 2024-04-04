@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import { AppsConfig } from '@scalprum/core';
-import { ScalprumProvider, ScalprumComponent } from '@scalprum/react-core';
+import { ScalprumProvider } from '@scalprum/react-core';
 import { getScalprumConfig } from './server';
+import { Progress } from '@chakra-ui/react';
+import { Route, Routes } from 'react-router-dom';
+import BasicModule from './routes/basic-module';
+import SampleConfiguration from './routes/sample-configuration';
+import ScalprumApi from './routes/scalprum-api';
+import Extensions from './routes/extensions';
 
 const useScalprumConfig = () => {
   const [config, setConfig] = React.useState<AppsConfig | undefined>(undefined);
@@ -13,15 +19,39 @@ const useScalprumConfig = () => {
   return config;
 };
 
-const ScalprumRoot = () => {
-  const config = useScalprumConfig();
-  if (!config) return <div>Loading config...</div>;
+const Home = () => {
   return (
     <div>
-      <ScalprumProvider config={config}>
-        <ScalprumComponent scope="remoteModule" module="RemoteModuleComponent" />
-      </ScalprumProvider>
+      <h1>Home</h1>
     </div>
+  );
+};
+
+const ScalprumRoot = () => {
+  const [internalCounter, setInternalCounter] = React.useState(0);
+  const config = useScalprumConfig();
+  if (!config) return <Progress size="xs" isIndeterminate />;
+  return (
+    <ScalprumProvider
+      api={{
+        user: {
+          name: 'John Doe',
+        },
+        increment: () => {
+          setInternalCounter(internalCounter + 1);
+        },
+        internalCounter,
+      }}
+      config={config}
+    >
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sample-config" element={<SampleConfiguration />} />
+        <Route path="/basic-module" element={<BasicModule />} />
+        <Route path="/scalprum-api" element={<ScalprumApi />} />
+        <Route path="/extensions" element={<Extensions />} />
+      </Routes>
+    </ScalprumProvider>
   );
 };
 

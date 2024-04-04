@@ -1,7 +1,7 @@
 {
-  "name": "remote-module",
+  "name": "plugin-with-tab-2",
   "version": "1.0.0",
-  "description": "remote module",
+  "description": "plugin-with-tab-2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "http-server dist/ -p 8003 -c-1 --cors=*"
+    "serve": "http-server dist/ -p 8005 -c-1 --cors=*"
   },
   "author": "Martin Marosi <marvusm.mmi@gmail.com>",
   "license": "Apache-2.0",

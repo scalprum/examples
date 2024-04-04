@@ -7,12 +7,16 @@
   "private": true,
   "workspaces": [
     "showcase/shell",
-    "showcase/remote-module"
+    "showcase/remote-module",
+    "showcase/plugin-with-tab-1",
+    "showcase/plugin-with-tab-2"
   ],
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx,.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:showcase": "npm run build --prefix showcase/remote-module && concurrently \"npm run serve  --prefix showcase/shell\" \"npm run serve --prefix showcase/remote-module\""
+    "build:remotes": "concurrently \"npm run build --prefix showcase/remote-module\" \"npm run build --prefix showcase/plugin-with-tab-1\" \"npm run build --prefix showcase/plugin-with-tab-2\"",
+    "serve:remotes": "concurrently \"npm run serve --prefix showcase/remote-module\" \"npm run serve --prefix showcase/plugin-with-tab-1\" \"npm run serve --prefix showcase/plugin-with-tab-2\"",
+    "start:showcase": "npm run build:remotes && concurrently \"npm run serve  --prefix showcase/shell\" \"npm run serve:remotes\""
   },
   "author": "Martin Marosi <marvusm.mmi@gmail.com>",
   "license": "Apache-2.0",

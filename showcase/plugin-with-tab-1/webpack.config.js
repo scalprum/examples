@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { DynamicRemotePlugin } = require('@openshift/dynamic-plugin-sdk-webpack');
 
-const contextProviderExtensions = [
+const tabExtension = [
   {
     type: 'custom.tabs',
     properties: {
@@ -25,18 +25,16 @@ const sharedModules = {
 };
 
 const dynamicPlugin = new DynamicRemotePlugin({
-  extensions: [...contextProviderExtensions],
+  extensions: [...tabExtension],
   sharedModules,
   moduleFederationSettings: {
     libraryType: 'global',
   },
-  entryScriptfilename: 'remoteModule.(contenthash].js',
+  entryScriptfilename: 'plugin-with-tab-1.(contenthash].js',
   pluginMetadata: {
-    name: 'remoteModule',
+    name: 'plugin-with-tab-1',
     version: '1.0.0',
     exposedModules: {
-      RemoteModuleComponent: './src/RemoteModuleComponent.tsx',
-      RemoteUsingScalprumApi: './src/RemoteUsingScalprumApi.tsx',
       TabsExtension: './src/TabsExtension.tsx',
     },
     extensions: [],
@@ -51,7 +49,7 @@ const config = {
   entry: {},
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://localhost:8003/',
+    publicPath: 'http://localhost:8004/',
   },
   plugins: [
     dynamicPlugin,

@@ -26,7 +26,6 @@ module.exports = {
     'no-unused-vars': ['error', { ignoreRestSiblings: true }],
     'prettier/prettier': ['error', { singleQuote: true }],
     'no-prototype-builtins': 'off',
-    'import/prefer-default-export': ['error'],
   },
   overrides: [
     {

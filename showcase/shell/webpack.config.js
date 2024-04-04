@@ -17,6 +17,7 @@ const config = {
   devServer: {
     open: true,
     host: 'localhost',
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -37,6 +38,7 @@ const config = {
           },
           '@scalprum/react-core': { singleton: true, requiredVersion: '*' },
           '@openshift/dynamic-plugin-sdk': { singleton: true, requiredVersion: '*' },
+          '@openshift/dynamic-plugin-sdk-extensions': { singleton: true, requiredVersion: '*' },
         },
       ],
     }),

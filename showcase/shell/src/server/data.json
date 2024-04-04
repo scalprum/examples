@@ -2,5 +2,13 @@
   "remoteModule": {
     "name": "remoteModule",
     "manifestLocation": "http://localhost:8003/plugin-manifest.json"
+  },
+  "plugin-with-tab-1": {
+    "name": "plugin-with-tab-1",
+    "manifestLocation": "http://localhost:8004/plugin-manifest.json"
+  },
+  "plugin-with-tab-2": {
+    "name": "plugin-with-tab-2",
+    "manifestLocation": "http://localhost:8005/plugin-manifest.json"
   }
 }
