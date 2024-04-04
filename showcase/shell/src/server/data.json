@@ -1,0 +1,6 @@
+{
+  "remoteModule": {
+    "name": "remoteModule",
+    "manifestLocation": "http://localhost:8003/plugin-manifest.json"
+  }
+}

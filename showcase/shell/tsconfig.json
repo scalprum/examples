@@ -11,6 +11,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
   },
   "include": ["src/**/*tsx", "src/**/*ts", "src/index.tsx"]
 }
