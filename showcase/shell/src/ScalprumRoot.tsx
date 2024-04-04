@@ -7,7 +7,8 @@ import { Route, Routes } from 'react-router-dom';
 import BasicModule from './routes/basic-module';
 import SampleConfiguration from './routes/sample-configuration';
 import ScalprumApi from './routes/scalprum-api';
-import Extensions from './routes/extensions';
+import TabsExtensions from './routes/tabs-extensions';
+import FetchExtensions from './routes/fetch-extensions';
 
 const useScalprumConfig = () => {
   const [config, setConfig] = React.useState<AppsConfig | undefined>(undefined);
@@ -49,7 +50,8 @@ const ScalprumRoot = () => {
         <Route path="/sample-config" element={<SampleConfiguration />} />
         <Route path="/basic-module" element={<BasicModule />} />
         <Route path="/scalprum-api" element={<ScalprumApi />} />
-        <Route path="/extensions" element={<Extensions />} />
+        <Route path="/tabs-extensions" element={<TabsExtensions />} />
+        <Route path="/fetch-extensions" element={<FetchExtensions />} />
       </Routes>
     </ScalprumProvider>
   );

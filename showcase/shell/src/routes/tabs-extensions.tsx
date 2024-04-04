@@ -13,14 +13,15 @@ type TabExtension = Extension<
   }
 >;
 
-function isWorkspaceExtension(e: Extension): e is TabExtension {
+function isTabExtension(e: Extension): e is TabExtension {
   return !!(e.type === 'custom.tabs' && e.properties.tabs);
 }
 
 const TabsWrapper = () => {
-  const [extensions, resolved] = useResolvedExtensions(isWorkspaceExtension);
-  const tabPanels = resolved
-    ? extensions.map((e, i) => {
+  const [allExtensions] = useResolvedExtensions();
+  const [tabsExtensions, tabsEesolved] = useResolvedExtensions(isTabExtension);
+  const tabPanels = tabsEesolved
+    ? tabsExtensions.map((e, i) => {
         const T = e.properties.tabs;
         return (
           <TabPanel key={i}>
@@ -30,8 +31,8 @@ const TabsWrapper = () => {
       })
     : [];
 
-  const tabs = resolved
-    ? extensions.map((e, i) => {
+  const tabs = tabsEesolved
+    ? tabsExtensions.map((e, i) => {
         return <Tab key={i}>{e.pluginName}</Tab>;
       })
     : [];
@@ -42,11 +43,23 @@ const TabsWrapper = () => {
         <TabList>{tabs}</TabList>
         <TabPanels>{tabPanels}</TabPanels>
       </Tabs>
+      <hr />
+      <p>Typeguards are used to select specific extension types</p>
+      <Box>
+        <h2>All</h2>
+        <pre>
+          <code>{JSON.stringify(allExtensions, null, 2)}</code>
+        </pre>
+        <h2>Tabs</h2>
+        <pre>
+          <code>{JSON.stringify(tabsExtensions, null, 2)}</code>
+        </pre>
+      </Box>
     </Box>
   );
 };
 
-const Extensions = () => {
+const TabsExtensions = () => {
   const [loaded, setLoaded] = useState(false);
   const scalprum = useScalprum();
 
@@ -60,8 +73,7 @@ const Extensions = () => {
       setLoaded(true);
     });
   }, []);
-  // scalprum.pluginStore.loadPlugin(scalprum.config.extensions);
   return <RouteLayout code={code}>{loaded ? <TabsWrapper /> : 'Loading...'}</RouteLayout>;
 };
 
-export default Extensions;
+export default TabsExtensions;

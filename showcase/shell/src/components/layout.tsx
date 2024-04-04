@@ -19,8 +19,11 @@ const Layout = ({ children }: PropsWithChildren) => {
           <ChakraLink as={ReactRouterLink} to="/scalprum-api">
             Scalprum API
           </ChakraLink>
-          <ChakraLink as={ReactRouterLink} to="/extensions">
-            Extensions
+          <ChakraLink as={ReactRouterLink} to="/tabs-extensions">
+            Tabs Extensions
+          </ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/fetch-extensions">
+            Fetch Extension
           </ChakraLink>
         </HStack>
         <Box sx={{ width: '100%' }}>{children}</Box>

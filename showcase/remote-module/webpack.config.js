@@ -14,6 +14,17 @@ const contextProviderExtensions = [
       },
     },
   },
+  {
+    type: 'custom.dogs',
+    properties: {
+      fetchRandomDog: {
+        $codeRef: 'DogsExtension.fetchRandomDog',
+      },
+      fetchRandomDogWithBreed: {
+        $codeRef: 'DogsExtension.fetchRandomDogWithBreed',
+      },
+    },
+  },
 ];
 
 const sharedModules = {
@@ -38,6 +49,7 @@ const dynamicPlugin = new DynamicRemotePlugin({
       RemoteModuleComponent: './src/RemoteModuleComponent.tsx',
       RemoteUsingScalprumApi: './src/RemoteUsingScalprumApi.tsx',
       TabsExtension: './src/TabsExtension.tsx',
+      DogsExtension: './src/fetchDogDataExtension.ts',
     },
     extensions: [],
   },
