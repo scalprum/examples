@@ -9,8 +9,22 @@
     "showcase/shell"
   ],
   "scripts": {
+    "lint": "eslint . --ext .ts,.tsx,.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Martin Marosi <marvusm.mmi@gmail.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "@babel/eslint-parser": "^7.24.1"
+  }
 }
