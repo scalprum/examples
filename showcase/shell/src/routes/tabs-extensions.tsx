@@ -1,7 +1,7 @@
 import React, { ComponentType, useEffect, useState } from 'react';
 import { useScalprum } from '@scalprum/react-core';
 import { Extension, useResolvedExtensions } from '@openshift/dynamic-plugin-sdk';
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from '@chakra-ui/react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Box, Button } from '@chakra-ui/react';
 import RouteLayout from '../components/route-layout';
 
 const code = ``;
@@ -18,6 +18,7 @@ function isTabExtension(e: Extension): e is TabExtension {
 }
 
 const TabsWrapper = () => {
+  const scalprum = useScalprum();
   const [allExtensions] = useResolvedExtensions();
   const [tabsExtensions, tabsEesolved] = useResolvedExtensions(isTabExtension);
   const tabPanels = tabsEesolved
@@ -43,6 +44,14 @@ const TabsWrapper = () => {
         <TabList>{tabs}</TabList>
         <TabPanels>{tabPanels}</TabPanels>
       </Tabs>
+      <hr />
+      <Button
+        onClick={() => {
+          scalprum.pluginStore.setFeatureFlags({ REMOTE_TAB_FLAG: !scalprum.pluginStore.getFeatureFlags()['REMOTE_TAB_FLAG'] });
+        }}
+      >
+        Enable remote tab flag
+      </Button>
       <hr />
       <p>Typeguards are used to select specific extension types</p>
       <Box>

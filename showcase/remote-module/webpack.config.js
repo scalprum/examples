@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { DynamicRemotePlugin } = require('@openshift/dynamic-plugin-sdk-webpack');
 
+/** @type { import("@openshift/dynamic-plugin-sdk-webpack").Extension[] } */
 const contextProviderExtensions = [
   {
     type: 'custom.tabs',
@@ -12,6 +13,9 @@ const contextProviderExtensions = [
       tabs: {
         $codeRef: 'TabsExtension.Tab',
       },
+    },
+    flags: {
+      required: ['REMOTE_TAB_FLAG'],
     },
   },
   {
