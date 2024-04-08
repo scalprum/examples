@@ -9,6 +9,7 @@ import SampleConfiguration from './routes/sample-configuration';
 import ScalprumApi from './routes/scalprum-api';
 import TabsExtensions from './routes/tabs-extensions';
 import FetchExtensions from './routes/fetch-extensions';
+import PreloadModule from './routes/preload-module';
 
 const useScalprumConfig = () => {
   const [config, setConfig] = React.useState<AppsConfig | undefined>(undefined);
@@ -52,6 +53,7 @@ const ScalprumRoot = () => {
         <Route path="/scalprum-api" element={<ScalprumApi />} />
         <Route path="/tabs-extensions" element={<TabsExtensions />} />
         <Route path="/fetch-extensions" element={<FetchExtensions />} />
+        <Route path="/preload" element={<PreloadModule />} />
       </Routes>
     </ScalprumProvider>
   );

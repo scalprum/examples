@@ -25,6 +25,9 @@ const Layout = ({ children }: PropsWithChildren) => {
           <ChakraLink as={ReactRouterLink} to="/fetch-extensions">
             Fetch Extension
           </ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/preload">
+            Preload module
+          </ChakraLink>
         </HStack>
         <Box sx={{ width: '100%' }}>{children}</Box>
       </VStack>
