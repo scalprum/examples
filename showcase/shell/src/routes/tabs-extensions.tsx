@@ -20,8 +20,8 @@ function isTabExtension(e: Extension): e is TabExtension {
 const TabsWrapper = () => {
   const scalprum = useScalprum();
   const [allExtensions] = useResolvedExtensions();
-  const [tabsExtensions, tabsEesolved] = useResolvedExtensions(isTabExtension);
-  const tabPanels = tabsEesolved
+  const [tabsExtensions, tabsResolved] = useResolvedExtensions(isTabExtension);
+  const tabPanels = tabsResolved
     ? tabsExtensions.map((e, i) => {
         const T = e.properties.tabs;
         return (
@@ -32,7 +32,7 @@ const TabsWrapper = () => {
       })
     : [];
 
-  const tabs = tabsEesolved
+  const tabs = tabsResolved
     ? tabsExtensions.map((e, i) => {
         return <Tab key={i}>{e.pluginName}</Tab>;
       })
