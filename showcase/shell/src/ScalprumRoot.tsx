@@ -10,6 +10,7 @@ import ScalprumApi from './routes/scalprum-api';
 import TabsExtensions from './routes/tabs-extensions';
 import FetchExtensions from './routes/fetch-extensions';
 import PreloadModule from './routes/preload-module';
+import Layout from './components/layout';
 
 const useScalprumConfig = () => {
   const [config, setConfig] = React.useState<AppsConfig | undefined>(undefined);
@@ -46,15 +47,17 @@ const ScalprumRoot = () => {
       }}
       config={config}
     >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sample-config" element={<SampleConfiguration />} />
-        <Route path="/basic-module" element={<BasicModule />} />
-        <Route path="/scalprum-api" element={<ScalprumApi />} />
-        <Route path="/tabs-extensions" element={<TabsExtensions />} />
-        <Route path="/fetch-extensions" element={<FetchExtensions />} />
-        <Route path="/preload" element={<PreloadModule />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sample-config" element={<SampleConfiguration />} />
+          <Route path="/basic-module" element={<BasicModule />} />
+          <Route path="/scalprum-api" element={<ScalprumApi />} />
+          <Route path="/tabs-extensions" element={<TabsExtensions />} />
+          <Route path="/fetch-extensions" element={<FetchExtensions />} />
+          <Route path="/preload" element={<PreloadModule />} />
+        </Routes>
+      </Layout>
     </ScalprumProvider>
   );
 };
