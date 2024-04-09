@@ -37,7 +37,6 @@ const dynamicPlugin = new DynamicRemotePlugin({
     exposedModules: {
       TabsExtension: './src/TabsExtension.tsx',
     },
-    extensions: [],
   },
 });
 

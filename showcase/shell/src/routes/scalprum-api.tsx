@@ -3,6 +3,42 @@ import RouteLayout from '../components/route-layout';
 import { ScalprumComponent } from '@scalprum/react-core';
 
 const code = `
+/**
+ * {
+ *   "remoteModule": {
+ *     "name": "remoteModule",
+ *     "manifestLocation": "http://localhost:8003/plugin-manifest.json"
+ *   }
+ * } 
+ */
+
+/***********************************/
+
+const Root = () => {
+  const [internalCounter, setInternalCounter] = React.useState(0);
+  return (
+    <ScalprumProvider
+      api={{
+        user: {
+          name: 'John Doe',
+        },
+        increment: () => {
+          setInternalCounter(prev => prev + 1);
+        },
+        internalCounter,
+      }}
+    >
+      {children}
+    </ScalprumProvider>
+  )
+}
+
+/***********************************/
+
+<ScalprumComponent scope="remoteModule" module="RemoteUsingScalprumApi" />
+
+/***********************************/
+
 import React from 'react';
 import { useScalprum } from '@scalprum/react-core';
 
@@ -29,7 +65,7 @@ export default RemoteUsingScalprumApi;
 
 const ScalprumApi = () => {
   return (
-    <RouteLayout editorProps={{ height: 500 }} code={code}>
+    <RouteLayout code={code}>
       <ScalprumComponent scope="remoteModule" module="RemoteUsingScalprumApi" />
     </RouteLayout>
   );

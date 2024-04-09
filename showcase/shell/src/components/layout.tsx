@@ -89,8 +89,8 @@ const ExtensionsData = () => {
 const Layout = ({ children }: PropsWithChildren) => {
   return (
     <Box sx={{ padding: 0 }}>
-      <VStack spacing={4}>
-        <HStack sx={{ width: '100%', padding: 4 }} spacing="24px">
+      <VStack spacing={0} sx={{ minHeight: '100vh' }}>
+        <HStack bg="cyan.900" color="white" sx={{ width: '100%', padding: 4 }} spacing="24px">
           <ChakraLink as={ReactRouterLink} to="/">
             Home
           </ChakraLink>
@@ -111,6 +111,9 @@ const Layout = ({ children }: PropsWithChildren) => {
           </ChakraLink>
           <ChakraLink as={ReactRouterLink} to="/preload">
             Preload module
+          </ChakraLink>
+          <ChakraLink as={ReactRouterLink} to="/prefetch">
+            Prefetch data
           </ChakraLink>
         </HStack>
         <Box sx={{ width: '100%' }}>
@@ -143,7 +146,7 @@ const Layout = ({ children }: PropsWithChildren) => {
             </AccordionItem>
           </Accordion>
         </Box>
-        <Box sx={{ width: '100%', padding: 4 }}>{children}</Box>
+        <Box sx={{ width: '100%', padding: 0, flex: 1 }}>{children}</Box>
       </VStack>
     </Box>
   );

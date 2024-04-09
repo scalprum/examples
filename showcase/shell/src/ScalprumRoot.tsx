@@ -11,6 +11,7 @@ import TabsExtensions from './routes/tabs-extensions';
 import FetchExtensions from './routes/fetch-extensions';
 import PreloadModule from './routes/preload-module';
 import Layout from './components/layout';
+import PrefetchData from './routes/prefetch-data';
 
 const useScalprumConfig = () => {
   const [config, setConfig] = React.useState<AppsConfig | undefined>(undefined);
@@ -41,7 +42,7 @@ const ScalprumRoot = () => {
           name: 'John Doe',
         },
         increment: () => {
-          setInternalCounter(internalCounter + 1);
+          setInternalCounter((prev) => prev + 1);
         },
         internalCounter,
       }}
@@ -56,6 +57,7 @@ const ScalprumRoot = () => {
           <Route path="/tabs-extensions" element={<TabsExtensions />} />
           <Route path="/fetch-extensions" element={<FetchExtensions />} />
           <Route path="/preload" element={<PreloadModule />} />
+          <Route path="/prefetch" element={<PrefetchData />} />
         </Routes>
       </Layout>
     </ScalprumProvider>
